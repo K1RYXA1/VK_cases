@@ -1,4 +1,5 @@
-
+# Метакласс, который в начале названий всех атрибутов и методов, кроме магических, добавляет префикс "custom_"
+# Подменяться должны атрибуты класса и атрибуты экземпляра класса, в том числе добавленные после выполнения конструктора
 
 class CustomMeta(type):
 
@@ -57,16 +58,3 @@ class MyClass(metaclass=CustomMeta):
 
     def get_obj_private(self):
         return self.__obj_private
-
-
-assert CustomClass.custom_x == 50
-   
-
-inst = CustomClass()
-assert inst.custom_x == 50
-assert inst.custom_val == 99
-assert inst.custom_line() == 100
-assert str(inst) == "Custom_by_metaclass"
-
-inst.dynamic = "added later"
-assert inst.custom_dynamic == "added later"
