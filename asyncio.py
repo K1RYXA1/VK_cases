@@ -48,10 +48,10 @@ async def fetch_batch_urls(urls, n):
         for _ in range(n):
             workers.append(asyncio.create_task(fetch_worker(que, session, sem)))
         await read_url
-#         await read_url
+
 
         await que.join()
-#         await que.join()
+
 
         for wrk in workers:
             wrk.cancel()
